@@ -23,6 +23,7 @@ def get_user_params():
     passphrase = input("Enter your passphrase for your encrypted private key:")
     return encrypted_private_key, passphrase
 
+# Translated from js: https://github.com/cryptocoinjs/bs58
 def bs58_decode(string):
     alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
     alphabet_dict = { alphabet[i]:i for i in range(len(alphabet)) }
@@ -53,6 +54,8 @@ def bs58_decode(string):
 
     return bytes[::-1][:-4]
 
+# WIP
+# Translating from: https://github.com/bitcoinjs/bip38/blob/master/index.js
 def decrypt(encrypted_private_key, passphrase):
     bs58_decoded_pk = bs58_decode(encrypted_private_key) 
     salt = bs58_decoded_pk[3:7]
@@ -67,6 +70,7 @@ def decrypt(encrypted_private_key, passphrase):
     decipher.setAutoPadding(false)
     print (decipher)
 
+# Throwaway keys
 def main():
     encrypted_private_key, passphrase = '5JyfkWSkZaLXCKZqsj2n4LgZFGcPZgt25KqYMEVgo2AKAXCtfL6', 'pass'#get_user_params()
     decrypt(encrypted_private_key, passphrase)
